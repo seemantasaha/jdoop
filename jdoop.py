@@ -501,8 +501,8 @@ class JDoop:
 
         classpath = ""
         if self.dependencies_classpath != None:
-            classpath = self.dependencies_classpath + ","
-        classpath += ",".join([
+            classpath = self.dependencies_classpath + ";"
+        classpath += ";".join([
             self.paths.tests_compilation_dir,
             self.paths.lib_junit,
             self.paths.lib_hamcrest,
@@ -804,7 +804,7 @@ if __name__ == "__main__":
     parser.add_argument('--generate-report', default=False, action="store_true", help='The tool should generate a code coverage report once it finishes its execution')
     parser.add_argument('--jdart-coverage-only', default=False, action="store_true", help='The tool should measure code coverage of JDart test cases only')
     parser.add_argument('--prioritize-drivers', default=False, action="store_true", help='Prioritize drivers with more symbolic variables')
-    parser.add_argument('--no-nhandler', default=False, action="store_true", help='Disable using jpf-nhandler')
+    parser.add_argument('--no-nhandler', default=True, action="store_true", help='Disable using jpf-nhandler')
     parser.add_argument('--jpf-core-path', help='Path to the jpf-core module')
     parser.add_argument('--jdart-path', help='Path to the jdart module')
     parser.add_argument('--sut-compilation', help='Directory where class files of the package being tested can be found')

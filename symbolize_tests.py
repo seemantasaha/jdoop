@@ -196,7 +196,7 @@ class SymbolicUnitTests:
     def initialize_output_file(self):
         self.output_file = []
         self.output_file.append("// This is an automatically generated file")
-        self.output_file.append("package " + self.package_name + ";\n")
+        #self.output_file.append("package " + self.package_name + ";\n")
         self.sym_var_list = []
         self.sym_var_init_vals = []
         self.method_name = None

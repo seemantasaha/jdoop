@@ -42,6 +42,10 @@ class GenerateConfFile:
 
         output_file.write("# This is an automatically generated configuration file\n\n")
 
+
+        output_file.write("@using = jpf-jdart\n");
+        output_file.write("shell=gov.nasa.jpf.jdart.JDart\n");
+
         if not self.no_nhandler:
             output_file.write("@using jpf-nhandler\n")
             output_file.write("nhandler.delegateUnhandledNative=true\n")
@@ -68,7 +72,7 @@ class GenerateConfFile:
                 if re.search("public class", line):
                     # Extract the class name
                     class_name = line.lstrip().split(" ")[2]
-                    output_file.write("target=" + self.package_name + "." + class_name + "\n\n")
+                    output_file.write("target=" + class_name + "\n\n")
                     top_level_class = False
                     continue
 
@@ -77,9 +81,8 @@ class GenerateConfFile:
                 # Extract the method name
                 method_name = line.lstrip().split(" ")[2].split("(")[0]
                 output_file.write("concolic.method=%s\n" % method_name)
-                output_file.write("concolic.method.%s=%s.%s.%s(%s)\n" % (
+                output_file.write("concolic.method.%s=%s.%s(%s)\n" % (
                     method_name,
-                    self.package_name,
                     class_name,
                     method_name,
                     ",".join([
